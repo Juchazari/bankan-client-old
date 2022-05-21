@@ -1,0 +1,192 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$bankan-primary: mat.define-palette(mat.$blue-palette, A400);
+$bankan-accent: mat.define-palette(mat.$pink-palette);
+$bankan-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$bankan-theme: mat.define-dark-theme((
+  color: (
+    primary: $bankan-primary,
+    accent: $bankan-accent,
+    warn: $bankan-warn
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($bankan-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  background-color: #071318;
+  overscroll-behavior-y: none;
+  overscroll-behavior-x: none;
+  color: #d1cedb;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 !important;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.block { 
+  width: 100%;
+}
+
+#login-page,
+#signup-page,
+#forgot-page {
+  .card {
+    max-width: 400px;
+    border-radius: 6px;
+    padding: 32px;
+    margin: 8rem auto;
+    background: #1c1a23;
+    color: white;
+    box-shadow:
+      0 2px 1px -1px rgba(0, 0, 0, 20%),
+      0 1px 1px rgba(0, 0, 0, 14%),
+      0 1px 3px rgba(0, 0, 0, 12%);
+  
+    .card-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 28px;
+  
+      .bankan-icon {
+        width: 48px;
+        margin-bottom: 8px;
+      }
+  
+      .card-title {
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 1;
+      }
+    }
+  
+    .submit-button {
+      margin-top: 1.34375em;
+    }
+
+    .error-alert {
+      margin-top: 16px;
+    }
+  
+    .extra-links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 32px;
+      font-size: 14px;
+      a {
+        color: #80b7ff;
+        &.forgot {
+          margin-bottom: 8px;
+        }
+      }
+    }
+  }
+  
+  @media screen and (max-width: 640px) {
+    .card {
+      background: transparent;
+      margin: 4rem auto;
+      box-shadow: none;
+    }
+  }
+}
+
+/* ---- Angular Material Component Style Overrides ---- */
+.mat-form-field {
+
+  .mat-form-field-outline {
+    color: #21262d;
+  }
+
+  .mat-form-field-label,
+  .mat-form-field-required-marker {
+      color: #fff;
+  }
+}
+
+.mat-menu-panel {
+  background: #1c1a23;
+
+  .mat-menu-item {
+    height: 40px;
+    line-height: 40px;
+    padding: 0 10px;
+    color: inherit;
+
+    .mat-icon {
+      width: 18px;
+      height: 18px;
+      font-size: 18px;
+      margin-right: 10px;
+      margin-bottom: 2px;
+      color: inherit;
+    }
+  }
+}
+
+.mat-dialog-container {
+  background: #1c1a23;
+}
+
+/** ---- Colors Lightest to Darkest ---- **/
+// #f6f5f8
+// #e3e2e9
+// #d1cedb Body Text
+// #bfbbcc
+// #aca7be
+// #9a94af
+// #8780a1
+// #756d92
+// #655e7f
+// #56506b
+// #464158
+// #373344
+// #272431
+// #17161d
+// #1c1a23 Sidebar, Topbar
+// #071318 Body

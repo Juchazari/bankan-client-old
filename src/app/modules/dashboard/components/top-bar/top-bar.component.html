@@ -1,0 +1,21 @@
+<ng-container *ngIf="!loading; else boardLoading">
+  <h2 class="project-title">{{ board.name }}</h2>
+
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>expand_more</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>edit_outline</mat-icon>
+      <span>Edit board details</span>
+    </button>
+    <button mat-menu-item (click)="boardDelete.emit(board)">
+      <mat-icon>delete_outline</mat-icon>
+      <span>Delete board</span>
+    </button>
+  </mat-menu>
+</ng-container>
+
+<ng-template #boardLoading>
+  <div class="name-loading-skeleton"></div>
+</ng-template>

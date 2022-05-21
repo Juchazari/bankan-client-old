@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>New board</h2>
+<mat-dialog-content>
+  <mat-form-field appearance="standard" class="block">
+    <mat-label>Name</mat-label>
+    <input matInput required [(ngModel)]="name" [disabled]="submitting" />
+  </mat-form-field>
+  <mat-form-field appearance="standard" class="block">
+    <mat-label>Description</mat-label>
+    <textarea matInput [(ngModel)]="description" [disabled]="submitting"></textarea>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-flat-button color="primary" [disabled]="!hasName() || submitting" (click)="submit()">Submit</button>
+</mat-dialog-actions>

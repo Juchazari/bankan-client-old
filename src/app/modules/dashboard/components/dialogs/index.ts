@@ -1,0 +1,1 @@
+export { NewBoardDialogComponent } from './new-board/new-board.component';

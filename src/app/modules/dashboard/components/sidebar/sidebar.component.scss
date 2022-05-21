@@ -1,0 +1,79 @@
+.sidebar {
+  width: 250px;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-top: 72px;
+  background: #1c1a23;
+
+  .bankan-icon-container {
+    height: 72px;
+    position: absolute;
+    top: 0;
+    left: 16px;
+    display: flex;
+    align-items: center;
+    user-select: none;
+
+    .icon {
+      width: 30px;
+    }
+  }
+
+  .board-group {
+    margin-bottom: 8px;
+
+    .board-group-header {
+      display: block;
+      position: relative;
+      line-height: 1;
+      padding: 8px 16px;
+      color: #8780a1;
+      font-weight: 500;
+
+      .board-group-actions {
+        position: absolute;
+        top: 2px;
+        right: 8px;
+
+        .more-button, .add-board-button {
+          width: 26px;
+          height: 26px;
+          line-height: 20px;
+  
+          .mat-icon {
+            width: 20px;
+            height: 20px;
+            font-size: 20px;
+            line-height: 20px;
+          }
+        }
+      }
+    }
+
+    .board {
+      display: block;
+      line-height: 1;
+      padding: 8px 16px;
+      cursor: pointer;
+
+      &:hover, &.active {
+        background: rgba(255, 255, 255, 0.12);
+      }
+    }
+  }
+
+  .add-board-group-button {
+    color: #8780a1;
+    text-align: left;
+    border-radius: 0;
+    padding: 0 12px;
+  }
+
+  .logout-button {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+  }
+}

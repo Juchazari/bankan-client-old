@@ -1,0 +1,75 @@
+.task {
+  width: 100%;
+  min-height: 42px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 10px;
+  padding-bottom: 0;
+  background-color: #1c1a23;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  box-shadow:
+    0 2px 1px -1px rgba(0, 0, 0, 20%),
+    0 1px 1px rgba(0, 0, 0, 14%),
+    0 1px 3px rgba(0, 0, 0, 12%);
+
+  .more-button {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    position: absolute;
+    top: 6px;
+    right: 5px;
+
+    .mat-icon {
+      font-size: 20px;
+    }
+  }
+
+  .task-name {
+    font-size: 14px;
+    padding-top: 2px;
+    padding-right: 28px;
+    overflow-wrap: break-word;
+    margin-bottom: 10px;
+  }
+
+  .labels,
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 12px;
+  }
+
+  .label,
+  .badge {
+    display: inline-flex;
+    margin-right: 8px;
+    margin-bottom: 10px;
+  }
+
+  .label {
+    background-color: #888888;
+    border-radius: 3px;
+    padding: 0 4px;
+    line-height: 1.5;
+    color: #fff;
+  }
+
+  .badge {
+    align-items: center;
+    color: #8780a1;
+
+    .mat-icon {
+      width: 16px;
+      height: 16px;
+      font-size: 16px;
+    }
+
+    .badge-text {
+      margin-left: 4px;
+    }
+  }
+}

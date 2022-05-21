@@ -1,0 +1,36 @@
+<div class="bankan-icon-container">
+  <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="64" height="31.4" viewBox="0 0 64 31.4">
+    <polygon style="fill:#1a73e8" points="64 0 42.66 31.4 21.34 0 42.66 15.7 64 0" />
+    <polygon style="fill:#fff" points="42.66 31.4 21.34 15.7 0 31.4 21.34 0 42.66 31.4" />
+  </svg>
+</div>
+
+<div *ngFor="let boardGroup of boardGroups" class="board-group">
+  <div class="board-group-header">
+    <span>{{ boardGroup.name }}</span>
+    <div class="board-group-actions">
+      <button mat-icon-button class="more-button">
+        <mat-icon>more_horiz</mat-icon>
+      </button>
+      <button mat-icon-button class="add-board-button" [matTooltip]="'New board'" (click)="newBoard.emit(boardGroup.id)">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
+  <a *ngFor="let board of boardGroup.boards"
+      routerLink="boards/{{board.id}}"
+      routerLinkActive="active"
+      matRipple
+      class="board">
+    {{ board.name }}
+  </a>
+</div>
+
+<button mat-button class="add-board-group-button">
+  <mat-icon>add</mat-icon>
+  <span>Add a group</span>
+</button>
+
+<button mat-icon-button matTooltip="Log out" class="logout-button" (click)="logout.emit()">
+  <mat-icon>logout_outline</mat-icon>
+</button>

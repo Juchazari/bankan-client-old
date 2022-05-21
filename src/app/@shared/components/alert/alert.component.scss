@@ -1,0 +1,88 @@
+.bankan-alert {
+  max-width: 100%;
+  min-height: 42px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  padding: 8px 42px;
+
+  &.error {
+    background-color: rgb(22, 11, 11);
+    color: rgb(244, 199, 199);
+
+    .alert-type-icon {
+      color: rgb(244, 67, 54);
+    }
+  }
+
+  &.warning {
+    background-color: rgb(25, 18, 7);
+    color: rgb(255, 226, 183);
+
+    .alert-type-icon {
+      color: rgb(255, 167, 38);
+    }
+  }
+
+  &.info {
+    background-color: rgb(7, 19, 24);
+    color: rgb(184, 231, 251);
+
+    .alert-type-icon {
+      color: rgb(41, 182, 246);
+    }
+  }
+
+  &.success {
+    background-color: rgb(12, 19, 13);
+    color: rgb(204, 232, 205);
+
+    .alert-type-icon {
+      color: rgb(102, 187, 106);
+    }
+  }
+
+  .alert-type-icon, .close-button {
+    position: absolute;
+  }
+
+  .alert-type-icon {
+    top: 9px;
+    left: 8px;
+  }
+
+  .close-button {
+    top: 6px;
+    right: 8px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    
+    .mat-icon {
+      width: 20px;
+      height: 20px;
+      font-size: 20px;
+      line-height: 20px;
+    }
+  }
+}
+
+// -- ALERT BACKGROUND COLORS --
+// ERROR: rgb(22, 11, 11)
+// WARNING: rgb(25, 18, 7)
+// INFO: rgb(7, 19, 24)
+// SUCCESS: rgb(12, 19, 13)
+
+// -- ICON COLORS --
+// ERROR: rgb(244, 67, 54)
+// WARNING: rgb(255, 167, 38)
+// INFO: rgb(41, 182, 246)
+// SUCCESS: rgb(102, 187, 106)
+
+// -- TEXT COLORS --
+// ERROR: rgb(244, 199, 199)
+// WARNING: rgb(255, 226, 183)
+// INFO: rgb(184, 231, 251)
+// SUCCESS: rgb(204, 232, 205)
+

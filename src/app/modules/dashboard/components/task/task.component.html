@@ -1,0 +1,44 @@
+<ng-container *ngIf="isTaskMousedOver">
+  <button mat-icon-button [matMenuTriggerFor]="menu" class="more-button">
+    <mat-icon>more_horiz</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>edit_outline</mat-icon>
+      <span>Rename task</span>
+    </button>
+    <button mat-menu-item class="delete-item-button" (click)="taskDelete.emit(task)">
+      <mat-icon>delete_outline</mat-icon>
+      <span>Delete task</span>
+    </button>
+  </mat-menu>
+</ng-container>
+
+<span class="task-name">{{ task.name }}</span>
+
+<div class="labels">
+  <span *ngFor="let label of task?.labels"
+        [style]="{ 'background-color': label.color }"
+        class="label">{{ label.value }}</span>
+</div>
+
+<div class="badges">
+  <div *ngIf="task.due_date" class="badge">
+    <mat-icon>access_time</mat-icon>
+    <span class="badge-text">{{ task.due_date }}</span>
+  </div>
+
+  <div *ngIf="task.description" class="badge">
+    <mat-icon>subject</mat-icon>
+  </div>
+
+  <div *ngIf="task.comments?.length > 0" class="badge">
+    <mat-icon>chat_bubble_outline</mat-icon>
+    <span class="badge-text">{{ task.comments?.length }}</span>
+  </div>
+
+  <div *ngIf="task.attachments?.length > 0" class="badge">
+    <mat-icon>attach_file</mat-icon>
+    <span class="badge-text">{{ task.attachments?.length }}</span>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<div class="card">
+  <div class="card-header">
+    <svg class="bankan-icon" xmlns="http://www.w3.org/2000/svg" width="64" height="31.4" viewBox="0 0 64 31.4">
+      <polygon style="fill:#1a73e8" points="64 0 42.66 31.4 21.34 0 42.66 15.7 64 0" />
+      <polygon style="fill:#fff" points="42.66 31.4 21.34 15.7 0 31.4 21.34 0 42.66 31.4" />
+    </svg>
+    <h1 class="card-title">Log in to your account</h1>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <mat-form-field appearance="outline" class="block">
+      <mat-label>Email</mat-label>
+      <input matInput required formControlName="email" [errorStateMatcher]="matcher" />
+      <mat-error *ngIf="email.invalid">
+        {{ email.hasError('required') ? 'Please enter your email' : 'Please enter a valid email address'  }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="block">
+      <mat-label>Password</mat-label>
+      <input matInput required [type]="passwordHidden ? 'password' : 'text'" formControlName="password" [errorStateMatcher]="matcher" />
+      <button mat-icon-button
+              matSuffix
+              type="button"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="passwordHidden"
+              (click)="passwordHidden = !passwordHidden">
+        <mat-icon>{{ passwordHidden ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+      <mat-error *ngIf="password.invalid">Please enter a value</mat-error>
+    </mat-form-field>
+    
+    <button mat-flat-button
+            color="primary"
+            type="submit"
+            [disabled]="submitting"
+            class="block submit-button">
+      Log in
+    </button>
+  </form>
+
+  <bankan-alert *ngIf="responseError"
+                [type]="alertType.ERROR"
+                (onClose)="closeAlert()"
+                class="error-alert">
+    {{ responseErrorMessage }}
+  </bankan-alert>
+  
+  <div class="extra-links">
+    <span>
+      Don't have an account?
+      <a routerLink="/signup" class="signup">Sign up</a>
+    </span>
+  </div>
+</div>

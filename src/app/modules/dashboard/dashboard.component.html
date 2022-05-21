@@ -1,0 +1,11 @@
+<div class="main">
+  <div class="sidebar-wrapper">
+    <sidebar [loading]="loading"
+             [boardGroups]="boardGroups"
+             (newBoard)="openNewBoardDialog($event)"
+             (logout)="logout()"></sidebar>
+  </div>
+  <div class="page-wrapper">
+    <router-outlet></router-outlet>
+  </div>
+</div>
