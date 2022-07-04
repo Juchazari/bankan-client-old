@@ -23,6 +23,7 @@ import {
   TaskComponent,
   NewBoardDialogComponent
 } from './components';
+import { SectionHeaderComponent } from './components/section/section.component';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import {
     TopBarComponent,
     BoardNotFoundComponent,
     SectionComponent,
+    SectionHeaderComponent,
     TaskComponent,
     NewBoardDialogComponent
   ]

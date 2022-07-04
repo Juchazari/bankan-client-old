@@ -1,13 +1,10 @@
 import { Icon } from '@core/models';
 import { Section } from '.';
 
-export interface BoardBase {
+export interface Board {
   id: number;
   name: string;
   boardGroupId: number;
-}
-
-export interface Board extends BoardBase {
   description?: string;
   icon?: Icon;
   sections: Section[];

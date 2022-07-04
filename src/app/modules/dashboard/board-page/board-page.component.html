@@ -1,31 +1,23 @@
-<ng-container *ngIf="!notFound">
-  <top-bar [loading]="loading" [board]="board" (boardDelete)="deleteBoard($event)"></top-bar>
-  <div #sectionsContainer cdkDropListGroup class="sections-container">
-    <ng-container *ngIf="!loading; else loadingTemplate">
-      <section *ngFor="let section of sections"
-                [section]="section"
-                (sectionDelete)="deleteSection($event)"></section>
-  
-      <div class="empty-section">
-        <ng-container *ngIf="addingSection">
-          {{ ensureBodyScrollEnd() }}
-          <mat-form-field class="block">
-            <input autoFocus matInput placeholder="New section" (blur)="onBlurOrEnter()"
-                   (keyup.enter)="onBlurOrEnter(true)" [(ngModel)]="newSectionName" />
-          </mat-form-field>
-        </ng-container>
-  
-        <button *ngIf="!addingSection" class="add-section-button" (click)="setAddingSection(true)">
-          <mat-icon>add</mat-icon>
-          <span>Add Section</span>
-        </button>
-      </div>
-    </ng-container>
+<ng-container *ngIf="board$ | async as board; else boardLoading">
+  <top-bar [board]="board"></top-bar>
+
+  <div cdkDropListGroup class="sections-container">
+    <section *ngFor="let section of board.sections" [section]="section"></section>
+
+    <div class="empty-section">
+      <ng-container *ngIf="addingSection">
+        <mat-form-field class="block">
+          <input autoFocus matInput placeholder="New section" [(ngModel)]="newSectionName" />
+        </mat-form-field>
+      </ng-container>
+
+      <button *ngIf="!addingSection" class="add-section-button">
+        <mat-icon>add</mat-icon>
+        <span>Add Section</span>
+      </button>
+    </div>
   </div>
 </ng-container>
 
-<ng-template #loadingTemplate>
-  <div class="section-loading-skeleton"></div>
+<ng-template #boardLoading>
 </ng-template>
-
-<board-not-found *ngIf="!loading && notFound"></board-not-found>

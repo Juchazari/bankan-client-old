@@ -6,11 +6,11 @@ import { Board } from '../models';
 import { BoardService } from '@core/services';
 
 @Injectable()
-export class BoardResolver implements Resolve<Board> {
+export class BoardResolver implements Resolve<void> {
   constructor(private boardService: BoardService) {
   }
 
-  resolve(route: ActivatedRouteSnapshot): Observable<Board> {
-    return this.boardService.getBoard(+route.paramMap.get('id'));
+  resolve(route: ActivatedRouteSnapshot): Observable<void> {
+    return this.boardService.setActiveBoard(+route.paramMap.get('id'));
   }
 }

@@ -12,48 +12,12 @@ import { Section, Task } from '../../models';
 })
 export class SectionComponent {
 
-  @Input()
-  set section(section: Section) {
-    this._section = section;
-    this.tasks = section.tasks;
-  }
-
-  get section() {
-    return this._section;
-  }
+  @Input() section: Section;
 
   @Output() sectionDelete = new EventEmitter<Section>();
 
-  tasks: Task[];
   addingTask = false;
   newTaskName: string;
-  
-  private _section: Section;
-
-  setAddingTask(value: boolean) {
-    this.addingTask = value;
-  }
-
-  onBlurOrEnter(enter?: boolean) {
-    const addTask = () => {
-      const newTask: Task = { id: 892102, name: this.newTaskName };
-      this.tasks.push(newTask);
-      this.newTaskName = undefined;
-    };
-
-    if (!enter) {
-      if (this.newTaskName) {
-        addTask();
-      }
-      this.setAddingTask(false);
-    } else if (this.newTaskName) {
-      addTask();
-    }
-  }
-
-  deleteTask(task: Task) {
-    this.tasks = this.tasks.filter(t => t !== task);
-  }
 
   drop(event: CdkDragDrop<Task[]>) {
     if (event.previousContainer === event.container) {
@@ -68,3 +32,34 @@ export class SectionComponent {
     }
   }
 }
+
+@Component({
+  selector: 'section-header',
+  template: `
+    <div class="section-header">
+      <h3 class="section-title">{{ section.name }}</h3>
+      
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_horiz</mat-icon>
+      </button>
+      <button [disabled]="addingTask" mat-icon-button matTooltip="Add Task">
+        <mat-icon>add</mat-icon>
+      </button>
+
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>edit_outline</mat-icon>
+          <span>Rename section</span>
+        </button>
+        <button mat-menu-item (click)="sectionDelete.emit(section)">
+          <mat-icon>delete_outline</mat-icon>
+          <span>Delete section</span>
+        </button>
+      </mat-menu>
+    </div>
+  `,
+  styleUrls: ['./section.component.scss'],
+  host: { 'class': 'section-header' },
+  encapsulation: ViewEncapsulation.None
+})
+export class SectionHeaderComponent extends SectionComponent {}

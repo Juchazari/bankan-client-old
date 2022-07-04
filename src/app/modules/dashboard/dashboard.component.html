@@ -1,9 +1,7 @@
 <div class="main">
   <div class="sidebar-wrapper">
-    <sidebar [loading]="loading"
-             [boardGroups]="boardGroups"
-             (newBoard)="openNewBoardDialog($event)"
-             (logout)="logout()"></sidebar>
+    <sidebar *ngIf="{ boardGroups: boardGroups$ | async } as vm"
+             [boardGroups]="vm.boardGroups"></sidebar>
   </div>
   <div class="page-wrapper">
     <router-outlet></router-outlet>

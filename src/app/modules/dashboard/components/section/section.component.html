@@ -4,7 +4,7 @@
   <button mat-icon-button [matMenuTriggerFor]="menu">
     <mat-icon>more_horiz</mat-icon>
   </button>
-  <button [disabled]="addingTask" mat-icon-button matTooltip="Add Task" (click)="setAddingTask(true)">
+  <button [disabled]="addingTask" mat-icon-button matTooltip="Add Task">
     <mat-icon>add</mat-icon>
   </button>
 
@@ -21,13 +21,12 @@
 </div>
 
 <div cdkDropList [cdkDropListData]="section.tasks" (cdkDropListDropped)="drop($event)" class="tasks-container">
-  <task *ngFor="let task of tasks" [task]="task" cdkDrag (taskDelete)="deleteTask($event)"></task>
+  <task *ngFor="let task of section.tasks" [task]="task" cdkDrag></task>
 
   <ng-container *ngIf="addingTask">
     <div class="new-task">
       <mat-form-field class="block">
-        <input autoFocus matInput placeholder="Write a task name" (blur)="onBlurOrEnter()"
-             (keyup.enter)="onBlurOrEnter(true)" [(ngModel)]="newTaskName" />
+        <input autoFocus matInput placeholder="Write a task name" [(ngModel)]="newTaskName" />
       </mat-form-field>
     </div>
   </ng-container>

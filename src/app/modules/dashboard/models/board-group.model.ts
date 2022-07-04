@@ -1,4 +1,3 @@
-import { Icon } from '@core/models';
 import { Board } from '.';
 
 export interface BoardGroup {

@@ -9,7 +9,7 @@ import { Board, BoardGroup, CreateBoardGroup, DeleteBoardGroupResponse } from '.
 @Injectable()
 export class BoardGroupService {
 
-  private mock = false;
+  private mock = true;
   private subject = new BehaviorSubject<BoardGroup[]>([]);
   private boardGroups$: Observable<BoardGroup[]> = this.subject.asObservable();
 
@@ -102,7 +102,7 @@ export class BoardGroupService {
       );
   }
 
-  removeBoard(board: Board): Observable<void> {
+  removeBoard(boardGroupId: number, boardId: number): Observable<void> {
     return this.getBoardGroups()
       .pipe(
         take(1),
@@ -111,8 +111,8 @@ export class BoardGroupService {
             // shallow copy is fine since we are filtering boards
             const boardGroupClone = { ...boardGroup };
 
-            if (boardGroupClone.id === board.boardGroupId) {
-              boardGroupClone.boards = boardGroupClone.boards.filter(b => b.id !== board.id);
+            if (boardGroupClone.id === boardGroupId) {
+              boardGroupClone.boards = boardGroupClone.boards.filter(b => b.id !== boardId);
             }
 
             return boardGroupClone;

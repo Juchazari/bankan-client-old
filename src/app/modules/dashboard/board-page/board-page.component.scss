@@ -10,10 +10,6 @@
     padding: 8px;
     overflow-x: auto;
     overflow-y: hidden;
-    // background-image: url('https://images.unsplash.com/photo-1648138754673-6feed2ff9383?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80');
-    // background-size: cover;
-    // background-position: center;
-    // background-repeat: no-repeat;
 
     &::-webkit-scrollbar {
       background: transparent;
@@ -26,37 +22,6 @@
       border: 4px solid transparent;
       background-clip: content-box;
       background-color: #9a94af;
-    }
-
-    .section-loading-skeleton {
-      position: relative;
-      background-color: #0C151B;
-      border-radius: 4px;
-      overflow: hidden;
-
-      &::after {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        transform: translateX(-100%);
-        background-image: linear-gradient(
-          90deg,
-          rgba(#12171E, 0) 0,
-          rgba(#12171E, 0.2) 20%,
-          rgba(#12171E, 0.5) 60%,
-          rgba(#12171E, 0)
-        );
-        animation: shimmer 1s infinite;
-        content: '';
-      }
-    
-      @keyframes shimmer {
-        100% {
-          transform: translateX(100%);
-        }
-      }
     }
 
     .empty-section, .section-loading-skeleton {

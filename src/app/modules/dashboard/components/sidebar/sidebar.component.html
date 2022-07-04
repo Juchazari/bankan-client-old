@@ -5,32 +5,38 @@
   </svg>
 </div>
 
-<div *ngFor="let boardGroup of boardGroups" class="board-group">
-  <div class="board-group-header">
-    <span>{{ boardGroup.name }}</span>
-    <div class="board-group-actions">
-      <button mat-icon-button class="more-button">
-        <mat-icon>more_horiz</mat-icon>
-      </button>
-      <button mat-icon-button class="add-board-button" [matTooltip]="'New board'" (click)="newBoard.emit(boardGroup.id)">
-        <mat-icon>add</mat-icon>
-      </button>
+<!-- Board Groups -->
+<ng-container *ngIf="boardGroups; else loadingBoardGroups">
+  <div *ngFor="let boardGroup of boardGroups" class="board-group">
+    <div class="board-group-header">
+      <span>{{ boardGroup.name }}</span>
+      <div class="board-group-actions">
+        <button mat-icon-button
+                [matTooltip]="'New board'"
+                (click)="openNewBoardDialog(boardGroup.id)"
+                class="add-board-button">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
     </div>
+
+    <!-- Boards -->
+    <a *ngFor="let board of boardGroup.boards"
+       routerLink="boards/{{board.id}}"
+       routerLinkActive="active"
+       matRipple
+       class="board">
+      {{ board.name }}
+    </a>
   </div>
-  <a *ngFor="let board of boardGroup.boards"
-      routerLink="boards/{{board.id}}"
-      routerLinkActive="active"
-      matRipple
-      class="board">
-    {{ board.name }}
-  </a>
-</div>
+</ng-container>
 
-<button mat-button class="add-board-group-button">
-  <mat-icon>add</mat-icon>
-  <span>Add a group</span>
-</button>
-
-<button mat-icon-button matTooltip="Log out" class="logout-button" (click)="logout.emit()">
+<!-- Log out Button -->
+<button mat-icon-button matTooltip="Log out" class="logout-button" (click)="logout()">
   <mat-icon>logout_outline</mat-icon>
 </button>
+
+<!-- TEMPLATES -->
+<ng-template #loadingBoardGroups>
+  <div *ngFor="let _ of [0, 1, 2]" class="board-groups-loading-skeleton"></div>
+</ng-template>

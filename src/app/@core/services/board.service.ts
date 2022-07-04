@@ -9,9 +9,12 @@ import { Board, CreateBoard, DeleteBoardResponse } from '../../modules/dashboard
 @Injectable()
 export class BoardService {
 
-  private mock = false;
+  private mock = true;
   private subject = new BehaviorSubject<Board[]>([]);
   private boards$: Observable<Board[]> = this.subject.asObservable();
+
+  private activeBoardSubject = new BehaviorSubject<Board>(null);
+  private activeBoard$: Observable<Board> = this.activeBoardSubject.asObservable();
 
   private readonly apiURL = `${environment.baseURL}/boards`;
   private readonly options = { withCredentials: true };
@@ -48,6 +51,18 @@ export class BoardService {
         take(1),
         map(boards => boards.find(board => board.id === id))
       );
+  }
+
+  setActiveBoard(id: number): Observable<void> {
+    return this.getBoard(id)
+      .pipe(
+        take(1),
+        map(board => this.activeBoardSubject.next(board))
+      );
+  }
+  
+  getActiveBoard(): Observable<Board> {
+    return this.activeBoard$;
   }
 
   createBoard(body: CreateBoard): Observable<Board> {
